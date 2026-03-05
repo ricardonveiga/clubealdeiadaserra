@@ -6,9 +6,7 @@
     <title>Clube Aldeia da Serra - 35 Anos</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
@@ -22,10 +20,10 @@
         
         /* PALETA DE CORES ORIGINAIS DO CLUBE */
         :root {
-            --verde-clube: #27AE60; /* Verde original */
-            --verde-escuro: #1E8449; /* Verde escuro original */
-            --azul-escuro: #1A252F; /* Azul marinho original para textos e rodapé */
-            --cinza-fundo: #F4F6F7; /* Fundo claro original */
+            --verde-clube: #27AE60; 
+            --verde-escuro: #1E8449; 
+            --azul-escuro: #1A252F; 
+            --cinza-fundo: #F4F6F7; 
         }
 
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--azul-escuro); }
@@ -34,27 +32,29 @@
         header { 
             position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
             background: rgba(255, 255, 255, 0.90);
-            backdrop-filter: blur(12px); /* Efeito de vidro fosco */
+            backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
             padding: 10px 0; transition: all 0.3s ease;
         }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
         
         /* LOGO DO CLUBE */
         .logo { display: flex; align-items: center; }
         .logo img { 
-        max-height: 55px; /* Mantém o cabeçalho fino */
-        width: auto; 
-        object-fit: contain; 
-        transform: scale(1.8); /* O PULO DO GATO: Aumenta a imagem em 80% sem empurrar o menu */
-        transform-origin: left center; /* Faz ela crescer pra direita, sem vazar da tela */
+            max-height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            transform: scale(1.8); 
+            transform-origin: left center; 
         }
         
+        /* MENU DESKTOP & HAMBÚRGUER */
         .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 600; align-items: center; }
         .nav-links a:hover { color: var(--verde-clube); }
         .btn-header { background: var(--verde-clube); color: white !important; padding: 10px 24px; border-radius: 50px; }
         .btn-header:hover { background: var(--verde-escuro); transform: translateY(-2px); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--azul-escuro); cursor: pointer; }
 
         /* HERO SECTION */
         .hero { 
@@ -87,18 +87,6 @@
         .diferenciais-lista li { font-size: 1.1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 15px; color: #334155; font-weight: 500; }
         .diferenciais-lista li i { color: var(--verde-clube); font-size: 1.3rem; background: rgba(39, 174, 96, 0.15); padding: 10px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
         
-        /* Swiper Customization - RESOLVENDO O TAMANHO E O BUG */
-        @media (max-width: 768px) {
-        .swiper {
-        height: 250px; /* Reduz a altura do carrossel no celular */
-        margin-top: 20px;
-        }
-        /* Faz o grid virar uma coluna só, com o texto em cima e o carrossel embaixo */
-        .grid-2 {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        }
-        }
         .swiper { width: 100%; height: 450px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
         .swiper-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: transparent; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
@@ -116,18 +104,7 @@
         .depoimento-card p { font-size: 1.1rem; color: #475569; margin-bottom: 25px; font-style: italic; }
         .depoimento-autor { font-weight: 700; font-size: 1rem; color: var(--azul-escuro); }
 
-        /* ASSOCIE-SE */
-        /* Ajuste de respiro para o texto no celular */
-        @media (max-width: 768px) {
-        .cta-section {
-        padding: 60px 20px; /* Aumenta o respiro interno */
-        margin: 0; /* Remove a margem lateral que estava espremendo */
-        border-radius: 0; /* No celular, fica melhor preenchendo a tela toda */
-        }
-        .cta-section h2 {
-        font-size: 2rem; /* Diminui o título para não quebrar tantas linhas */
-        }
-        }
+        /* ASSOCIE-SE CTA */
         .cta-section { 
             background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/clube01.png') center/cover; 
             text-align: center; 
@@ -138,6 +115,7 @@
         }
         .cta-section h2 { color: #FFFFFF !important; font-size: 3rem; margin-bottom: 20px; }
         .cta-section p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 40px auto; color: #FFFFFF !important; }
+        
         /* ANIMAÇÃO DO BOTÃO CTA */
         .btn-cta {
             display: inline-block;
@@ -150,20 +128,13 @@
             transition: all 0.3s ease;
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        
-        /* Quando passa o mouse em cima */
         .btn-cta:hover {
-            background: var(--verde-clube); /* Fica verde clube */
-            color: #FFFFFF; /* Texto fica branco */
-            transform: translateY(-4px); /* Dá uma leve flutuada pra cima */
-            box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4); /* Sombra verde escandalosa */
+            background: var(--verde-clube); 
+            color: #FFFFFF; 
+            transform: translateY(-4px); 
+            box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4); 
         }
-        
-        /* Quando clica (Efeito de afundar) */
-        .btn-cta:active {
-            transform: translateY(2px); /* Afunda o botão */
-            box-shadow: 0 5px 10px rgba(39, 174, 96, 0.4); /* Sombra diminui */
-        }
+        .btn-cta:active { transform: translateY(2px); box-shadow: 0 5px 10px rgba(39, 174, 96, 0.4); }
 
         /* FOOTER */
         footer { background: #111827; color: #94A3B8; padding: 80px 0 30px 0; margin-top: 100px; }
@@ -176,7 +147,7 @@
         .social-links a:hover { background: var(--verde-clube); transform: translateY(-3px); }
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
 
-        /* WHATSAPP FLUTUANTE (ANIMAÇÃO DE PULSO) */
+        /* WHATSAPP FLUTUANTE */
         .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; z-index: 10000;
             background-color: #25D366; color: white; width: 65px; height: 65px; 
@@ -192,14 +163,47 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* RESPONSIVO MOBILE */
+        /* ====================================================================
+           AJUSTES RESPONSIVOS (O SEGREDO DEVE ESTAR SEMPRE NO FINAL DO ARQUIVO)
+           ==================================================================== */
         @media (max-width: 900px) {
-            .nav-links { display: none; }
+            /* Transformando o Menu para Celular */
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none; /* Esconde o menu aberto por padrão */
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: white; flex-direction: column;
+                padding: 20px 0; gap: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-top: 1px solid #EEE;
+            }
+            .nav-links.active { display: flex; /* Classe ativada via JavaScript */ }
+            .nav-links a { font-size: 1.1rem; }
+            
+            /* Ajustes Logo e Textos Globais */
+            .logo img { transform: scale(1.4); } /* Logo um pouco menor para não amassar o menu */
             .hero h1 { font-size: 2.8rem; }
-            .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; }
+            .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .hero-btns { flex-direction: column; }
             .section-title { font-size: 2.2rem; }
-            .cta-section { margin: 0; border-radius: 0; }
+        }
+
+        @media (max-width: 768px) {
+            /* Ajuste Perfeito do Carrossel Mobile */
+            .swiper { 
+                height: 250px !important; 
+                margin-top: 10px !important; 
+            }
+            .grid-2 { padding: 0 10px; }
+            
+            /* Ajuste CTA Associe-se Mobile (Mais Respiro) */
+            .cta-section { 
+                margin: 0; 
+                border-radius: 20px; 
+                padding: 60px 20px; 
+            }
+            .cta-section h2 { font-size: 2rem !important; line-height: 1.2; margin-bottom: 15px; }
+            .cta-section p { font-size: 1rem !important; padding: 0 10px; margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -209,6 +213,9 @@
         <div class="container nav-container">
             <div class="logo">
                 <img src="images/Design_sem_nome__1_-removebg-preview.png" alt="Logo Clube Aldeia da Serra">
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
             </div>
             <nav class="nav-links">
                 <a href="#manifesto">O Clube</a>
@@ -382,6 +389,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
+        // Lógica do Carrossel
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
             centeredSlides: true,
@@ -389,8 +397,25 @@
                 delay: 3000,
                 disableOnInteraction: false,
             },
-            effect: "fade",
+            // Removido o 'effect: fade' para garantir que não vai bugar no celular
             loop: true,
+            grabCursor: true,
+        });
+
+        // Lógica do Menu Hambúrguer (Mobile)
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        // Abre e fecha o menu ao clicar no hambúrguer
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fecha o menu automaticamente quando clicar em algum link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
     </script>
 </body>
