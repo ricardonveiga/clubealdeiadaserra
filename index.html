@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clube Aldeia da Serra - 35 Anos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <style>
+        /* RESET MODERNO */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: #334155; background-color: #FAFAFA; line-height: 1.7; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        
+        /* PALETA DE CORES ORIGINAIS DO CLUBE */
+        :root {
+            --verde-clube: #27AE60; /* Verde original */
+            --verde-escuro: #1E8449; /* Verde escuro original */
+            --azul-escuro: #1A252F; /* Azul marinho original para textos e rodapé */
+            --cinza-fundo: #F4F6F7; /* Fundo claro original */
+        }
+
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--azul-escuro); }
+
+        /* CABEÇALHO GLASSMORPHISM (FIXO E MODERNO) */
+        header { 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(12px); /* Efeito de vidro fosco */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 10px 0; transition: all 0.3s ease;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* LOGO DO CLUBE */
+        .logo { display: flex; align-items: center; }
+        .logo img { 
+        max-height: 55px; /* Mantém o cabeçalho fino */
+        width: auto; 
+        object-fit: contain; 
+        transform: scale(1.8); /* O PULO DO GATO: Aumenta a imagem em 80% sem empurrar o menu */
+        transform-origin: left center; /* Faz ela crescer pra direita, sem vazar da tela */
+        }
+        
+        .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 600; align-items: center; }
+        .nav-links a:hover { color: var(--verde-clube); }
+        .btn-header { background: var(--verde-clube); color: white !important; padding: 10px 24px; border-radius: 50px; }
+        .btn-header:hover { background: var(--verde-escuro); transform: translateY(-2px); }
+
+        /* HERO SECTION */
+        .hero { 
+            height: 100vh; 
+            background: linear-gradient(rgba(26, 37, 47, 0.65), rgba(26, 37, 47, 0.8)), url('images/clube01.png') center/cover; 
+            display: flex; align-items: center; text-align: center; padding-top: 80px; 
+        }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .hero h1 { font-size: 4rem; color: white; margin-bottom: 20px; line-height: 1.1; font-weight: 800; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; color: #E2E8F0; margin-bottom: 40px; font-weight: 300; }
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+        .btn-primary { background: var(--verde-clube); color: white; padding: 16px 40px; border-radius: 50px; font-weight: 600; font-size: 15px; box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4); }
+        .btn-primary:hover { background: var(--verde-escuro); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(39, 174, 96, 0.5); }
+        .btn-outline { background: transparent; border: 2px solid white; color: white; padding: 16px 40px; border-radius: 50px; font-weight: 600; font-size: 15px; }
+        .btn-outline:hover { background: white; color: var(--azul-escuro); }
+
+        /* SEÇÕES GERAIS */
+        section { padding: 100px 0; }
+        .bg-light { background-color: var(--cinza-fundo); }
+        .section-title { text-align: center; font-size: 2.8rem; margin-bottom: 20px; font-weight: 700; letter-spacing: -1px; }
+        .section-subtitle { text-align: center; color: var(--verde-clube); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 50px; display: block; }
+        
+        /* MANIFESTO */
+        .manifesto-texto { max-width: 750px; margin: 0 auto; text-align: center; font-size: 1.15rem; color: #475569; }
+        .manifesto-texto p { margin-bottom: 20px; }
+        .manifesto-texto .destaque { font-size: 1.8rem; color: var(--azul-escuro); font-weight: 700; margin: 40px 0; font-family: 'Poppins', sans-serif; line-height: 1.3; }
+
+        /* DIFERENCIAIS COM CARROSSEL */
+        .grid-2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+        .diferenciais-lista li { font-size: 1.1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 15px; color: #334155; font-weight: 500; }
+        .diferenciais-lista li i { color: var(--verde-clube); font-size: 1.3rem; background: rgba(39, 174, 96, 0.15); padding: 10px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        
+        /* Swiper Customization - RESOLVENDO O TAMANHO E O BUG */
+        .swiper { width: 100%; height: 450px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
+        .swiper-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: transparent; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+
+        /* BLOCOS DE TEXTO/IMAGEM */
+        .text-block h2 { font-size: 2.4rem; margin-bottom: 15px; line-height: 1.2; }
+        .text-block p { font-size: 1.1rem; margin-bottom: 20px; color: #475569; }
+        .img-rounded { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+        .img-rounded:hover { transform: translateY(-10px); }
+
+        /* DEPOIMENTOS */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .depoimento-card { background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); text-align: center; border: 1px solid #E2E8F0; transition: all 0.3s ease; }
+        .depoimento-card:hover { border-color: var(--verde-clube); transform: translateY(-5px); }
+        .depoimento-card p { font-size: 1.1rem; color: #475569; margin-bottom: 25px; font-style: italic; }
+        .depoimento-autor { font-weight: 700; font-size: 1rem; color: var(--azul-escuro); }
+
+        /* ASSOCIE-SE */
+        .cta-section { 
+            background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/clube01.png') center/cover; 
+            text-align: center; 
+            padding: 100px 0; 
+            border-radius: 30px; 
+            margin: 0 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .cta-section h2 { color: #FFFFFF !important; font-size: 3rem; margin-bottom: 20px; }
+        .cta-section p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 40px auto; color: #FFFFFF !important; }
+        /* ANIMAÇÃO DO BOTÃO CTA */
+        .btn-cta {
+            display: inline-block;
+            background: #FFFFFF;
+            color: var(--azul-escuro);
+            font-size: 1.15rem;
+            font-weight: 700;
+            padding: 18px 50px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Quando passa o mouse em cima */
+        .btn-cta:hover {
+            background: var(--verde-clube); /* Fica verde clube */
+            color: #FFFFFF; /* Texto fica branco */
+            transform: translateY(-4px); /* Dá uma leve flutuada pra cima */
+            box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4); /* Sombra verde escandalosa */
+        }
+        
+        /* Quando clica (Efeito de afundar) */
+        .btn-cta:active {
+            transform: translateY(2px); /* Afunda o botão */
+            box-shadow: 0 5px 10px rgba(39, 174, 96, 0.4); /* Sombra diminui */
+        }
+
+        /* FOOTER */
+        footer { background: #111827; color: #94A3B8; padding: 80px 0 30px 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; margin-bottom: 50px; }
+        .footer-col h4 { color: white; font-family: 'Poppins', sans-serif; font-size: 1.2rem; margin-bottom: 25px; }
+        .footer-col p { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        .footer-col p i { color: var(--verde-clube); }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: 0.3s; }
+        .social-links a:hover { background: var(--verde-clube); transform: translateY(-3px); }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+
+        /* WHATSAPP FLUTUANTE (ANIMAÇÃO DE PULSO) */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; z-index: 10000;
+            background-color: #25D366; color: white; width: 65px; height: 65px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 35px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
+            transition: all 0.3s ease; animation: pulse 2s infinite;
+        }
+        .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); animation: none; }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* RESPONSIVO MOBILE */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; }
+            .hero-btns { flex-direction: column; }
+            .section-title { font-size: 2.2rem; }
+            .cta-section { margin: 0; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="images/Design_sem_nome__1_-removebg-preview.png" alt="Logo Clube Aldeia da Serra">
+            </div>
+            <nav class="nav-links">
+                <a href="#manifesto">O Clube</a>
+                <a href="#diferenciais">Estrutura</a>
+                <a href="#esportes">Movimento</a>
+                <a href="#comunidade">Comunidade</a>
+                <a href="#experiencias">Experiências</a>
+                <a href="#contato">Contato</a>
+                <a href="#associe-se" class="btn-header">Associe-se</a>
+            </nav>
+        </div>
+    </header>
+
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>35 anos cultivando uma vida ativa.</h1>
+            <p>Movimento, natureza e pertencimento em um dos espaços mais privilegiados da região.</p>
+            <div class="hero-btns">
+                <a href="#manifesto" class="btn-outline">Conheça o Clube</a>
+                <a href="#associe-se" class="btn-primary">Associe-se Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="manifesto">
+        <div class="container text-center">
+            <span class="section-subtitle">Nossa Essência</span>
+            <h2 class="section-title">Não somos apenas um clube.<br>Somos um espaço onde a vida acontece.</h2>
+            <div class="manifesto-texto">
+                <p>Acreditamos que bem-estar é prática diária. Que o movimento transforma. Que a natureza equilibra. Que a convivência fortalece.</p>
+                <p>Aqui, o esporte faz parte da rotina. Os encontros são genuínos. E as gerações crescem juntas.</p>
+                <p class="destaque">"Estrutura se constrói. Comunidade se cultiva."</p>
+                <p><strong>Há 35 anos escolhemos viver assim.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais" class="bg-light">
+        <div class="container grid-2">
+            <div class="text-block">
+                <span class="section-subtitle" style="text-align: left; margin-bottom: 10px;">Infraestrutura</span>
+                <h2>Pensada para viver melhor.</h2>
+                <p>Tudo integrado à natureza. Tudo pensado para o uso cotidiano.</p>
+                <ul class="diferenciais-lista">
+                    <li><i class="fas fa-leaf"></i> 130.000 m² de área verde</li>
+                    <li><i class="fas fa-check-circle"></i> Mais de 18 modalidades inclusas</li>
+                    <li><i class="fas fa-swimmer"></i> Piscinas aquecidas e ao ar livre</li>
+                    <li><i class="fas fa-table-tennis"></i> Quadras de tênis rápidas e em saibro</li>
+                    <li><i class="fas fa-volleyball-ball"></i> Beach tennis e vôlei de praia</li>
+                    <li><i class="fas fa-dumbbell"></i> Academia equipada de ponta</li>
+                </ul>
+            </div>
+            
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="images/clube01.png" alt="Clube"></div>
+                    <div class="swiper-slide"><img src="images/tenis01.png" alt="Esporte"></div>
+                    <div class="swiper-slide"><img src="images/unnamed.webp" alt="Lazer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="esportes">
+        <div class="container grid-2">
+            <div>
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000" alt="Esportes" class="img-rounded">
+            </div>
+            <div class="text-block">
+                <span class="section-subtitle" style="text-align: left; margin-bottom: 10px;">Movimento</span>
+                <h2>Para todas as fases da vida.</h2>
+                <p>Do infantil ao adulto, o esporte aqui não é evento. É cultura.</p>
+                <p>Aulas coletivas, modalidades competitivas, treinos orientados e atividades de bem-estar fazem parte da rotina do associado — <strong>sem taxas adicionais por modalidade.</strong></p>
+                <br>
+                <p style="font-weight: 600; color: var(--verde-clube);">Aqui, praticar é simples. Continuar é natural.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comunidade" class="bg-light">
+        <div class="container text-center">
+            <span class="section-subtitle">Vida em Comunidade</span>
+            <h2 class="section-title">Pertencer faz diferença.</h2>
+            <div class="manifesto-texto">
+                <p>Mais do que frequentar um espaço, nossos associados constroem relações.</p>
+                <p>Famílias se encontram. Amizades se fortalecem. Crianças crescem com liberdade. Adultos encontram equilíbrio.</p>
+                <p class="destaque" style="font-size: 1.4rem;">O clube é extensão da casa, com mais verde e mais movimento.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencias">
+        <div class="container grid-2">
+            <div class="text-block">
+                <span class="section-subtitle" style="text-align: left; margin-bottom: 10px;">Eventos</span>
+                <h2>Um clube que pulsa o ano inteiro.</h2>
+                <p>Carnaval, festivais esportivos, aniversários, encontros temáticos, passeios culturais e experiências especiais fazem parte do calendário.</p>
+                <p>Celebramos conquistas. Criamos memórias. Fortalecemos vínculos.</p>
+                <br>
+                <p style="font-weight: 600; color: var(--verde-clube);">Tradição e renovação caminham juntas.</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1000" alt="Eventos" class="img-rounded">
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="bg-light">
+        <div class="container">
+            <span class="section-subtitle">O Que Dizem Nossos Sócios</span>
+            <h2 class="section-title" style="margin-bottom: 60px;">Nossa Comunidade</h2>
+            <div class="grid-3">
+                <div class="depoimento-card">
+                    <p>"Mais do que esporte, encontramos uma comunidade."</p>
+                    <div class="depoimento-autor">Família Silva</div>
+                </div>
+                <div class="depoimento-card">
+                    <p>"O clube virou parte da nossa rotina e da nossa história."</p>
+                    <div class="depoimento-autor">João e Maria</div>
+                </div>
+                <div class="depoimento-card">
+                    <p>"Um espaço seguro, acolhedor e vivo."</p>
+                    <div class="depoimento-autor">Roberto Alves</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="associe-se">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Mais do que um título.<br>Um pertencimento.</h2>
+                <p>Fazer parte do Clube Aldeia da Serra é escolher uma rotina mais ativa, mais conectada à natureza e mais próxima de quem importa. Uma comunidade consolidada, com 35 anos de história.</p>
+                <a href="https://wa.me/5511999886127" class="btn-cta">Solicitar Informações</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <img src="images/Design_sem_nome__1_-removebg-preview.png" alt="Logo Clube Aldeia da Serra" style="max-height: 130px; margin-top: -30px; margin-bottom: -15px; filter: brightness(0) invert(1); object-fit: contain; transform-origin: left center;">
+                <p style="margin-top: 5px; color: #94A3B8;">35 anos cultivando uma vida ativa e em harmonia com a natureza.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/clubealdeiadaserraoficial/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/clubealdeiadaserraoficial/"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Estr. Dr. Yojiro Takaoka, 2900 - Aldeia da Serra, Barueri - SP, 06500-000</p>
+                <p><i class="fas fa-phone"></i> (11) 4192-2953</p>
+                <p><i class="fab fa-whatsapp"></i> (11) 99988-6127</p>
+                <p><i class="fas fa-envelope"></i> contato@clubealdeiadaserra.com.br</p>
+            </div>
+            <div class="footer-col">
+                <h4>Funcionamento</h4>
+                <p><i class="far fa-clock"></i> Seg a Sex: 07h às 22h</p>
+                <p><i class="far fa-clock"></i> Sáb, Dom e Feriados: 07h às 20h</p>
+                <p style="margin-top: 20px; color: white; font-weight: 600;"><i class="fas fa-calendar-check"></i> Visitas com Agendamento</p>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; 2026 Clube Aldeia da Serra. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            effect: "fade",
+            loop: true,
+        });
+    </script>
+</body>
+</html>
