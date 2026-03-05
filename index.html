@@ -88,6 +88,17 @@
         .diferenciais-lista li i { color: var(--verde-clube); font-size: 1.3rem; background: rgba(39, 174, 96, 0.15); padding: 10px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
         
         /* Swiper Customization - RESOLVENDO O TAMANHO E O BUG */
+        @media (max-width: 768px) {
+        .swiper {
+        height: 250px; /* Reduz a altura do carrossel no celular */
+        margin-top: 20px;
+        }
+        /* Faz o grid virar uma coluna só, com o texto em cima e o carrossel embaixo */
+        .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        }
+        }
         .swiper { width: 100%; height: 450px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
         .swiper-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: transparent; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
@@ -106,6 +117,17 @@
         .depoimento-autor { font-weight: 700; font-size: 1rem; color: var(--azul-escuro); }
 
         /* ASSOCIE-SE */
+        /* Ajuste de respiro para o texto no celular */
+        @media (max-width: 768px) {
+        .cta-section {
+        padding: 60px 20px; /* Aumenta o respiro interno */
+        margin: 0; /* Remove a margem lateral que estava espremendo */
+        border-radius: 0; /* No celular, fica melhor preenchendo a tela toda */
+        }
+        .cta-section h2 {
+        font-size: 2rem; /* Diminui o título para não quebrar tantas linhas */
+        }
+        }
         .cta-section { 
             background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/clube01.png') center/cover; 
             text-align: center; 
