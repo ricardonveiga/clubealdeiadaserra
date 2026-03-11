@@ -53,7 +53,7 @@
         /* HERO SECTION */
         .hero { 
             height: 100vh; 
-            background: linear-gradient(rgba(26, 37, 47, 0.65), rgba(26, 37, 47, 0.8)), url('images/background.png?v=2') center/cover;
+            background: linear-gradient(rgba(26, 37, 47, 0.65), rgba(26, 37, 47, 0.8)), url('images/bginicial.jpeg') center/cover;
             display: flex; align-items: center; text-align: center; padding-top: 80px; 
         }
         .hero-content { max-width: 900px; margin: 0 auto; }
@@ -155,10 +155,19 @@
         .depoimento-card p { font-size: 1.1rem; color: #475569; margin-bottom: 25px; font-style: italic; }
         .depoimento-autor { font-weight: 700; font-size: 1rem; color: var(--azul-escuro); }
 
-        /* ASSOCIE-SE CTA */
+        /* ====================================================================
+           ASSOCIE-SE CTA (CORRIGIDO)
+           ==================================================================== */
         .cta-section { 
-            background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/clube01.png') center/cover; 
-            text-align: center; padding: 100px 0; border-radius: 30px; margin: 0 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background-image: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/bginicial.jpeg'); 
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center; 
+            padding: 100px 0; 
+            border-radius: 30px; 
+            margin: 0 20px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .cta-section h2 { color: #FFFFFF !important; font-size: 3rem; margin-bottom: 20px; }
         .cta-section p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 40px auto; color: #FFFFFF !important; }
@@ -298,7 +307,7 @@
                     <div class="swiper-slide"><img src="images/carrosel06.JPG" alt="Clube Drone"></div>
                     <div class="swiper-slide"><img src="images/carrosel02.png" alt="Quadras de Tenis"></div>
                     <div class="swiper-slide"><img src="images/carrosel05.webp" alt="Campo de Futebol"></div>
-                    <div class="swiper-slide"><img src="images/carrosel04.jpeg" alt="Clube Drone"></div>
+                    <div class="swiper-slide"><img src="images/carrosel04.png" alt="Clube Drone"></div>
                 </div>
             </div>
         </div>
@@ -344,10 +353,10 @@
                         <div class="event-card">
                             <div class="event-img">
                                 <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=800" alt="Natação Águas Abertas">
-                                <div class="event-badge"><span>08</span> Nov</div>
+                                <div class="event-badge"><span></span> JUNHO</div>
                             </div>
                             <div class="event-info">
-                                <h3>Festival de Natação</h3>
+                                <h3>Festival de Natação Infantil</h3>
                                 <p>Mais informações em breve.</p>
                                 <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais<i class="fas fa-arrow-right"></i></a>
                             </div>
@@ -357,13 +366,13 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=800" alt="Torneio de Tênis">
-                                <div class="event-badge"><span>15</span> Nov</div>
+                                <img src="images/beachtennis.jpeg" alt="Beach Tennis">
+                                <div class="event-badge"><span>28</span> MAR</div>
                             </div>
                             <div class="event-info">
-                                <h3>Torneio de Beach Tennis</h3>
+                                <h3>Liga Feminina de Beach Tennis 2026</h3>
                                 <p>Participe do nosso torneio de duplas.</p>
-                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais <i class="fas fa-arrow-right"></i></a>
+                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Inscreva-se<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -372,10 +381,10 @@
                         <div class="event-card">
                             <div class="event-img">
                                 <img src="images/proximo_evento_fut01.jpeg" alt="7 Campeonato de Futebol">
-                                <div class="event-badge"><span>05</span> Dez</div>
-                            </div>
+                                <div class="event-badge"><span>--</span> MAR</div>
+                            </div
                             <div class="event-info">
-                                <h3>7 Campeonato de Futebol</h3>
+                                <h3>7º Campeonato de Futebol de Campo</h3>
                                 <p>Vem ai mais um campeonato no Clube Aldeia da Serra</p>
                                 <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais <i class="fas fa-arrow-right"></i></a>
                             </div>
@@ -414,23 +423,23 @@
                 </div>
                 
                 <div class="gallery-item tall">
-                    <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?q=80&w=800" alt="Galeria">
-                    <div class="gallery-overlay"><span>Torneio de Beach Tennis</span></div>
+                    <img src="images/diadasmulheres01.jpeg" alt="Galeria">
+                    <div class="gallery-overlay"><span>Dia das Mulheres Yoga + Defesa Pessoal</span></div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="Galeria">
-                    <div class="gallery-overlay"><span>Natação Kids</span></div>
+                    <img src="images/caminhada0911_01.jpeg" alt="Galeria">
+                    <div class="gallery-overlay"><span>Caminhada Outubro Rosa/Novembro Azul</span></div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Galeria">
-                    <div class="gallery-overlay"><span>Yoga no Gramado</span></div>
+                    <img src="images/Yogafinaldeano01.jpeg" alt="Galeria">
+                    <div class="gallery-overlay"><span>Yoga Final de Ano</span></div>
                 </div>
                 
                 <div class="gallery-item wide">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800" alt="Galeria">
-                    <div class="gallery-overlay"><span>Festa de Confraternização</span></div>
+                    <img src="images/eventos01.jpg" alt="Galeria">
+                    <div class="gallery-overlay"><span>Campeonato Interno de Futebol</span></div>
                 </div>
             </div>
         </div>
