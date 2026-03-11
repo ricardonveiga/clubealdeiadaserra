@@ -120,6 +120,29 @@
         .swiper-pagination-bullet-active { background: var(--verde-clube) !important; }
 
         /* ====================================================================
+           INDICADOR DE DESLIZE (SÓ PARA CELULAR)
+           ==================================================================== */
+        .swipe-indicator { 
+            display: none; /* Escondido por padrão no PC */
+            text-align: center; 
+            color: #64748B; 
+            font-size: 0.9rem; 
+            margin-top: -30px; /* Para encaixar perfeitamente abaixo do título */
+            margin-bottom: 30px; 
+            font-weight: 500; 
+        }
+        .swipe-indicator i { 
+            color: var(--verde-clube); 
+            margin-left: 5px; 
+            animation: slideAnim 1.5s infinite; 
+            display: inline-block; 
+        }
+        @keyframes slideAnim { 
+            0%, 100% { transform: translateX(0); } 
+            50% { transform: translateX(5px); } 
+        }
+
+        /* ====================================================================
            NOVO: MURAL DE FOTOS (ACONTECEU NO CLUBE)
            ==================================================================== */
         .gallery-grid {
@@ -233,6 +256,9 @@
             .cta-section { margin: 0; border-radius: 20px; padding: 60px 20px; }
             .cta-section h2 { font-size: 2rem !important; line-height: 1.2; margin-bottom: 15px; }
             .cta-section p { font-size: 1rem !important; padding: 0 10px; margin-bottom: 30px; }
+            
+            /* ATIVA O INDICADOR SÓ NO CELULAR E TABLET */
+            .swipe-indicator { display: block; }
         }
     </style>
 </head>
@@ -346,6 +372,10 @@
             <span class="section-subtitle">Nossa Agenda</span>
             <h2 class="section-title" style="margin-bottom: 50px;">Próximos Eventos</h2>
             
+            <div class="swipe-indicator">
+                Deslize para ver mais <i class="fas fa-angle-double-right"></i>
+            </div>
+            
             <div class="swiper swiper-eventos">
                 <div class="swiper-wrapper">
                     
@@ -382,7 +412,7 @@
                             <div class="event-img">
                                 <img src="images/proximo_evento_fut01.jpeg" alt="7 Campeonato de Futebol">
                                 <div class="event-badge"><span>--</span> MAR</div>
-                            </div
+                            </div>
                             <div class="event-info">
                                 <h3>7º Campeonato de Futebol de Campo</h3>
                                 <p> Vem ai mais um campeonato no Clube Aldeia da Serra</p>
@@ -501,7 +531,7 @@
             grabCursor: true,
         });
 
-        // Carrossel 2: Próximos Eventos (Novo!)
+        // Carrossel 2: Próximos Eventos
         var swiperEventos = new Swiper(".swiper-eventos", {
             slidesPerView: 1, // Celular vê 1 por vez
             spaceBetween: 25,
