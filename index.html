@@ -92,7 +92,7 @@
         .img-rounded:hover { transform: translateY(-10px); }
 
         /* ====================================================================
-           NOVO: CARROSSEL DE EVENTOS (PRÓXIMOS)
+           CARROSSEL DE EVENTOS (PRÓXIMOS)
            ==================================================================== */
         .swiper-eventos { padding-bottom: 50px; }
         .event-card { 
@@ -123,11 +123,11 @@
            INDICADOR DE DESLIZE (SÓ PARA CELULAR)
            ==================================================================== */
         .swipe-indicator { 
-            display: none; /* Escondido por padrão no PC */
+            display: none; 
             text-align: center; 
             color: #64748B; 
             font-size: 0.9rem; 
-            margin-top: -30px; /* Para encaixar perfeitamente abaixo do título */
+            margin-top: -30px; 
             margin-bottom: 30px; 
             font-weight: 500; 
         }
@@ -143,7 +143,7 @@
         }
 
         /* ====================================================================
-           NOVO: MURAL DE FOTOS (ACONTECEU NO CLUBE)
+           MURAL DE FOTOS (ACONTECEU NO CLUBE)
            ==================================================================== */
         .gallery-grid {
             display: grid;
@@ -179,7 +179,7 @@
         .depoimento-autor { font-weight: 700; font-size: 1rem; color: var(--azul-escuro); }
 
         /* ====================================================================
-           ASSOCIE-SE CTA (CORRIGIDO)
+           ASSOCIE-SE CTA
            ==================================================================== */
         .cta-section { 
             background-image: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/bginicial.jpeg'); 
@@ -247,7 +247,7 @@
             .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .hero-btns { flex-direction: column; }
             .section-title { font-size: 2.2rem; }
-            .gallery-item.large, .gallery-item.tall, .gallery-item.wide { grid-column: span 1; grid-row: span 1; } /* Reseta no mobile */
+            .gallery-item.large, .gallery-item.tall, .gallery-item.wide { grid-column: span 1; grid-row: span 1; }
         }
 
         @media (max-width: 768px) {
@@ -256,8 +256,6 @@
             .cta-section { margin: 0; border-radius: 20px; padding: 60px 20px; }
             .cta-section h2 { font-size: 2rem !important; line-height: 1.2; margin-bottom: 15px; }
             .cta-section p { font-size: 1rem !important; padding: 0 10px; margin-bottom: 30px; }
-            
-            /* ATIVA O INDICADOR SÓ NO CELULAR E TABLET */
             .swipe-indicator { display: block; }
         }
     </style>
@@ -421,20 +419,6 @@
                         </div>
                     </div>
 
-                        <div class="swiper-slide">
-                        <div class="event-card">
-                            <div class="event-img">
-                                <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=800" alt="Natação Águas Abertas">
-                                <div class="event-badge"><span></span> JUNHO</div>
-                            </div>
-                            <div class="event-info">
-                                <h3>Festival de Natação Infantil</h3>
-                                <p>Mais informações em breve.</p>
-                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais<i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -471,6 +455,12 @@
                     <img src="images/eventos01.jpg" alt="Galeria">
                     <div class="gallery-overlay"><span>Campeonato Interno de Futebol</span></div>
                 </div>
+                
+                <div class="gallery-item tall">
+                    <img src="images/carrosel02.png" alt="Galeria">
+                    <div class="gallery-overlay"><span>Torneio de Tênis</span></div>
+                </div>
+
             </div>
         </div>
     </section>
