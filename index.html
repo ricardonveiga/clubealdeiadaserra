@@ -167,6 +167,13 @@
         .gallery-item:hover .gallery-overlay { opacity: 1; }
         .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
         
+        /* -------- CORREÇÃO PARA NÃO CORTAR CABEÇA -------- */
+        /* Aplique esta classe na tag <img> que estiver com problema */
+        .gallery-item img.ajuste-cabeca {
+            object-position: center top !important; /* Força o alinhamento no topo, mantendo o preenchimento */
+        }
+        /* ------------------------------------------------- */
+        
         /* Destacando algumas fotos para dar dinamismo no grid */
         .gallery-item.large { grid-column: span 2; grid-row: span 2; }
         .gallery-item.tall { grid-row: span 2; }
@@ -301,7 +308,7 @@
     <section id="manifesto">
         <div class="container text-center">
             <span class="section-subtitle">Nossa Essência</span>
-            <h2 class="section-title">Não somos apenas um clube.<br>Somos um espaço onde a vida acontece.</h2>
+            <h2 class="section-title">Não somos apenas um clube.<br>Somos um space onde a vida acontece.</h2>
             <div class="manifesto-texto">
                 <p>Acreditamos que bem-estar é prática diária. Que o movimento transforma. Que a natureza equilibra. Que a convivência fortalece.</p>
                 <p>Aqui, o esporte faz parte da rotina. Os encontros são genuínos. E as gerações crescem juntas.</p>
@@ -359,7 +366,7 @@
             <span class="section-subtitle">Vida em Comunidade</span>
             <h2 class="section-title">Pertencer faz diferença.</h2>
             <div class="manifesto-texto">
-                <p>Mais do que frequentar um espaço, nossos associados constroem relações.</p>
+                <p>Mais do que frequentar um space, nossos associados constroem relações.</p>
                 <p>Famílias se encontram. Amizades se fortalecem. Crianças crescem com liberdade. Adultos encontram equilíbrio.</p>
                 <p class="destaque" style="font-size: 1.4rem;">O clube é extensão da casa, com muito verde e mais movimento.</p>
             </div>
@@ -409,12 +416,12 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=800" alt="Natação Águas Abertas">
-                                <div class="event-badge"><span></span> JUNHO</div>
+                                <img src="images/jantar.jpeg" alt="Jantar 35 Anos">
+                                <div class="event-badge"><span>27</span> MAR</div>
                             </div>
                             <div class="event-info">
-                                <h3>Festival de Natação Infantil</h3>
-                                <p>Mais informações em breve.</p>
+                                <h3>Jantar 35 Clube Aldeia da Serra</h3>
+                                <p>Mais informações.</p>
                                 <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -447,7 +454,7 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item large">
-                    <img src="images/superliga01.jpeg" alt="Galeria">
+                    <img src="images/superliga01.jpeg" alt="Galeria" class="ajuste-cabeca">
                     <div class="gallery-overlay"><span>Super Liga SP</span></div>
                 </div>
                 
@@ -494,7 +501,7 @@
                     <div class="depoimento-autor">João e Maria</div>
                 </div>
                 <div class="depoimento-card">
-                    <p>"Um espaço seguro, acolhedor e vivo."</p>
+                    <p>"Um space seguro, acolhedor e vivo."</p>
                     <div class="depoimento-autor">Roberto Alves</div>
                 </div>
             </div>
