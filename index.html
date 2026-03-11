@@ -41,16 +41,10 @@
         
         /* LOGO DO CLUBE */
         .logo { display: flex; align-items: center; }
-        .logo img { 
-            max-height: 55px; 
-            width: auto; 
-            object-fit: contain; 
-            transform: scale(1.8); 
-            transform-origin: left center; 
-        }
+        .logo img { max-height: 55px; width: auto; object-fit: contain; transform: scale(1.8); transform-origin: left center; }
         
         /* MENU DESKTOP & HAMBÚRGUER */
-        .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 600; align-items: center; }
+        .nav-links { display: flex; gap: 25px; font-size: 14px; font-weight: 600; align-items: center; }
         .nav-links a:hover { color: var(--verde-clube); }
         .btn-header { background: var(--verde-clube); color: white !important; padding: 10px 24px; border-radius: 50px; }
         .btn-header:hover { background: var(--verde-escuro); transform: translateY(-2px); }
@@ -87,15 +81,72 @@
         .diferenciais-lista li { font-size: 1.1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 15px; color: #334155; font-weight: 500; }
         .diferenciais-lista li i { color: var(--verde-clube); font-size: 1.3rem; background: rgba(39, 174, 96, 0.15); padding: 10px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
         
-        .swiper { width: 100%; height: 450px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
-        .swiper-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: transparent; }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+        .swiper-diferenciais { width: 100%; height: 450px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
+        .swiper-diferenciais .swiper-slide { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .swiper-diferenciais img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
 
         /* BLOCOS DE TEXTO/IMAGEM */
         .text-block h2 { font-size: 2.4rem; margin-bottom: 15px; line-height: 1.2; }
         .text-block p { font-size: 1.1rem; margin-bottom: 20px; color: #475569; }
         .img-rounded { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
         .img-rounded:hover { transform: translateY(-10px); }
+
+        /* ====================================================================
+           NOVO: CARROSSEL DE EVENTOS (PRÓXIMOS)
+           ==================================================================== */
+        .swiper-eventos { padding-bottom: 50px; }
+        .event-card { 
+            background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s;
+            height: 100%; display: flex; flex-direction: column; border: 1px solid #E2E8F0;
+        }
+        .event-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: var(--verde-clube); }
+        .event-img { position: relative; height: 220px; overflow: hidden; }
+        .event-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .event-card:hover .event-img img { transform: scale(1.05); }
+        .event-badge {
+            position: absolute; top: 15px; left: 15px;
+            background: var(--verde-clube); color: white; padding: 8px 15px; 
+            border-radius: 10px; font-weight: 700; font-size: 0.9rem; text-align: center; line-height: 1.2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .event-badge span { display: block; font-size: 1.3rem; }
+        .event-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .event-info h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .event-info p { color: #64748B; font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+        .event-link { color: var(--verde-clube); font-weight: 600; font-size: 1rem; margin-top: auto; display: inline-flex; align-items: center; gap: 8px; }
+        .event-link i { transition: 0.3s; }
+        .event-card:hover .event-link i { transform: translateX(5px); }
+        .swiper-pagination-bullet-active { background: var(--verde-clube) !important; }
+
+        /* ====================================================================
+           NOVO: MURAL DE FOTOS (ACONTECEU NO CLUBE)
+           ==================================================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-auto-rows: 250px;
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative; border-radius: 15px; overflow: hidden; cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+        }
+        .gallery-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: flex-end; padding: 20px;
+        }
+        .gallery-overlay span { color: white; font-weight: 600; font-size: 1.1rem; transform: translateY(10px); transition: 0.3s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
+        
+        /* Destacando algumas fotos para dar dinamismo no grid */
+        .gallery-item.large { grid-column: span 2; grid-row: span 2; }
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
 
         /* DEPOIMENTOS */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
@@ -107,33 +158,17 @@
         /* ASSOCIE-SE CTA */
         .cta-section { 
             background: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/clube01.png') center/cover; 
-            text-align: center; 
-            padding: 100px 0; 
-            border-radius: 30px; 
-            margin: 0 20px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center; padding: 100px 0; border-radius: 30px; margin: 0 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .cta-section h2 { color: #FFFFFF !important; font-size: 3rem; margin-bottom: 20px; }
         .cta-section p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 40px auto; color: #FFFFFF !important; }
         
         /* ANIMAÇÃO DO BOTÃO CTA */
         .btn-cta {
-            display: inline-block;
-            background: #FFFFFF;
-            color: var(--azul-escuro);
-            font-size: 1.15rem;
-            font-weight: 700;
-            padding: 18px 50px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            display: inline-block; background: #FFFFFF; color: var(--azul-escuro); font-size: 1.15rem; font-weight: 700;
+            padding: 18px 50px; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        .btn-cta:hover {
-            background: var(--verde-clube); 
-            color: #FFFFFF; 
-            transform: translateY(-4px); 
-            box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4); 
-        }
+        .btn-cta:hover { background: var(--verde-clube); color: #FFFFFF; transform: translateY(-4px); box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4); }
         .btn-cta:active { transform: translateY(2px); box-shadow: 0 5px 10px rgba(39, 174, 96, 0.4); }
 
         /* FOOTER */
@@ -167,41 +202,26 @@
            AJUSTES RESPONSIVOS 
            ==================================================================== */
         @media (max-width: 900px) {
-            /* Transformando o Menu para Celular */
             .menu-toggle { display: block; }
             .nav-links {
-                display: none; /* Esconde o menu aberto por padrão */
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: white; flex-direction: column;
-                padding: 20px 0; gap: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                border-top: 1px solid #EEE;
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background: white; flex-direction: column; padding: 20px 0; gap: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-top: 1px solid #EEE;
             }
-            .nav-links.active { display: flex; /* Classe ativada via JavaScript */ }
+            .nav-links.active { display: flex; }
             .nav-links a { font-size: 1.1rem; }
-            
-            /* Ajustes Logo e Textos Globais */
-            .logo img { transform: scale(1.4); } /* Logo um pouco menor para não amassar o menu */
+            .logo img { transform: scale(1.4); }
             .hero h1 { font-size: 2.8rem; }
             .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .hero-btns { flex-direction: column; }
             .section-title { font-size: 2.2rem; }
+            .gallery-item.large, .gallery-item.tall, .gallery-item.wide { grid-column: span 1; grid-row: span 1; } /* Reseta no mobile */
         }
 
         @media (max-width: 768px) {
-            /* Ajuste Perfeito do Carrossel Mobile */
-            .swiper { 
-                height: 250px !important; 
-                margin-top: 10px !important; 
-            }
+            .swiper-diferenciais { height: 250px !important; margin-top: 10px !important; }
             .grid-2 { padding: 0 10px; }
-            
-            /* Ajuste CTA Associe-se Mobile (Mais Respiro) */
-            .cta-section { 
-                margin: 0; 
-                border-radius: 20px; 
-                padding: 60px 20px; 
-            }
+            .cta-section { margin: 0; border-radius: 20px; padding: 60px 20px; }
             .cta-section h2 { font-size: 2rem !important; line-height: 1.2; margin-bottom: 15px; }
             .cta-section p { font-size: 1rem !important; padding: 0 10px; margin-bottom: 30px; }
         }
@@ -222,8 +242,8 @@
                 <a href="#diferenciais">Estrutura</a>
                 <a href="#esportes">Movimento</a>
                 <a href="#comunidade">Comunidade</a>
-                <a href="#experiencias">Experiências</a>
-                <a href="#contato">Contato</a>
+                <a href="#eventos">Eventos</a>
+                <a href="#aconteceu">Galeria</a>
                 <a href="#associe-se" class="btn-header">Associe-se</a>
             </nav>
         </div>
@@ -273,7 +293,7 @@
                 </ul>
             </div>
             
-            <div class="swiper mySwiper">
+            <div class="swiper swiper-diferenciais">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="images/carrosel06.JPG" alt="Clube Drone"></div>
                     <div class="swiper-slide"><img src="images/carrosel02.png" alt="Quadras de Tenis"></div>
@@ -312,26 +332,114 @@
         </div>
     </section>
 
-    <section id="experiencias">
-        <div class="container grid-2">
-            <div class="text-block">
-                <span class="section-subtitle" style="text-align: left; margin-bottom: 10px;">Eventos</span>
-                <h2>Um clube que pulsa o ano inteiro.</h2>
-                <p>Carnaval, festivais esportivos, aniversários, encontros temáticos, passeios culturais e experiências especiais fazem parte do calendário.</p>
-                <p>Celebramos conquistas. Criamos memórias. Fortalecemos vínculos.</p>
-                <br>
-                <p style="font-weight: 600; color: var(--verde-clube);">Tradição e renovação caminham juntas.</p>
-            </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1000" alt="Eventos" class="img-rounded">
+    <section id="eventos">
+        <div class="container">
+            <span class="section-subtitle">Nossa Agenda</span>
+            <h2 class="section-title" style="margin-bottom: 50px;">Próximos Eventos</h2>
+            
+            <div class="swiper swiper-eventos">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="event-card">
+                            <div class="event-img">
+                                <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?q=80&w=800" alt="Natação Águas Abertas">
+                                <div class="event-badge"><span>08</span> Nov</div>
+                            </div>
+                            <div class="event-info">
+                                <h3>Festival de Natação</h3>
+                                <p>Mais informações em breve.</p>
+                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais<i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="event-card">
+                            <div class="event-img">
+                                <img src="https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=800" alt="Torneio de Tênis">
+                                <div class="event-badge"><span>15</span> Nov</div>
+                            </div>
+                            <div class="event-info">
+                                <h3>Torneio de Beach Tennis</h3>
+                                <p>Participe do nosso torneio de duplas.</p>
+                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="event-card">
+                            <div class="event-img">
+                                <img src="images/proximo_evento_fut01.jpeg" alt="7 Campeonato de Futebol">
+                                <div class="event-badge"><span>05</span> Dez</div>
+                            </div>
+                            <div class="event-info">
+                                <h3>7 Campeonato de Futebol</h3>
+                                <p>Vem ai mais um campeonato no Clube Aldeia da Serra</p>
+                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="event-card">
+                            <div class="event-img">
+                                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=800" alt="Festa Infantil">
+                                <div class="event-badge"><span>12</span> Dez</div>
+                            </div>
+                            <div class="event-info">
+                                <h3>Festival Kids de Verão</h3>
+                                <p>Muita brincadeira, brinquedos infláveis e gincanas nas piscinas para a criançada aproveitar as férias.</p>
+                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
 
-    <section id="depoimentos" class="bg-light">
+    <section id="aconteceu" class="bg-light">
+        <div class="container">
+            <span class="section-subtitle">Nossos Momentos</span>
+            <h2 class="section-title" style="margin-bottom: 50px;">Aconteceu no Clube</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800" alt="Galeria">
+                    <div class="gallery-overlay"><span>Treino Funcional ao Ar Livre</span></div>
+                </div>
+                
+                <div class="gallery-item tall">
+                    <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?q=80&w=800" alt="Galeria">
+                    <div class="gallery-overlay"><span>Torneio de Beach Tennis</span></div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="Galeria">
+                    <div class="gallery-overlay"><span>Natação Kids</span></div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" alt="Galeria">
+                    <div class="gallery-overlay"><span>Yoga no Gramado</span></div>
+                </div>
+                
+                <div class="gallery-item wide">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800" alt="Galeria">
+                    <div class="gallery-overlay"><span>Festa de Confraternização</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos">
         <div class="container">
             <span class="section-subtitle">O Que Dizem Nossos Sócios</span>
-            <h2 class="section-title" style="margin-bottom: 60px;">Nossa Comunidade</h2>
+            <h2 class="section-title" style="margin-bottom: 60px;">Vozes da Comunidade</h2>
             <div class="grid-3">
                 <div class="depoimento-card">
                     <p>"Mais do que esporte, encontramos uma comunidade."</p>
@@ -390,29 +498,38 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        // Lógica do Carrossel
-        var swiper = new Swiper(".mySwiper", {
+        // Carrossel 1: Diferenciais (Estrutura)
+        var swiperDiferenciais = new Swiper(".swiper-diferenciais", {
             spaceBetween: 30,
             centeredSlides: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            // Removido o 'effect: fade' para garantir que não vai bugar no celular
+            autoplay: { delay: 3000, disableOnInteraction: false },
             loop: true,
             grabCursor: true,
+        });
+
+        // Carrossel 2: Próximos Eventos (Novo!)
+        var swiperEventos = new Swiper(".swiper-eventos", {
+            slidesPerView: 1, // Celular vê 1 por vez
+            spaceBetween: 25,
+            grabCursor: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 }, // Tablet vê 2
+                1024: { slidesPerView: 3 } // PC vê 3
+            }
         });
 
         // Lógica do Menu Hambúrguer (Mobile)
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
 
-        // Abre e fecha o menu ao clicar no hambúrguer
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
-        // Fecha o menu automaticamente quando clicar em algum link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
