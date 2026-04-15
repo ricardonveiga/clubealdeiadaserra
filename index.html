@@ -28,7 +28,7 @@
             --cinza-fundo: #F4F6F7; 
         }
 
-        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--azul-escuro); }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--azul-escuro  ); }
 
         /* CABEÇALHO GLASSMORPHISM (FIXO E MODERNO) */
         header { 
@@ -101,6 +101,7 @@
             background: white; border-radius: 20px; overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s;
             height: 100%; display: flex; flex-direction: column; border: 1px solid #E2E8F0;
+            cursor: pointer;
         }
         .event-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: var(--verde-clube); }
         .event-img { position: relative; height: 220px; overflow: hidden; }
@@ -114,12 +115,94 @@
         }
         .event-badge span { display: block; font-size: 1.3rem; }
         .event-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .event-info h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        .event-info p { color: #64748B; font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
-        .event-link { color: var(--verde-clube); font-weight: 600; font-size: 1rem; margin-top: auto; display: inline-flex; align-items: center; gap: 8px; }
+        .event-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .event-info h3 { font-size: 1.3rem; font-weight: 800; line-height: 1.3; color: var(--azul-escuro); flex: 1; }
+        .event-plus { color: var(--verde-clube); font-size: 1.4rem; font-weight: 700; margin-left: 10px; transition: 0.3s; }
+        .event-card:hover .event-plus { transform: rotate(90deg); }
+        .event-link { color: var(--verde-clube); font-weight: 600; font-size: 1rem; margin-top: auto; display: inline-flex; align-items: center; gap: 8px; position: relative; z-index: 2; }
         .event-link i { transition: 0.3s; }
         .event-card:hover .event-link i { transform: translateX(5px); }
         .swiper-pagination-bullet-active { background: var(--verde-clube) !important; }
+
+        /* ====================================================================
+           MODAL DE EVENTOS (AJUSTE FINO DE PROPORÇÃO)
+           ==================================================================== */
+        .event-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 37, 47, 0.85);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 10001; display: none; align-items: center; justify-content: center;
+            padding: 20px; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .event-modal.active { display: flex; opacity: 1; }
+        .modal-content {
+            background: white; width: 100%; max-width: 950px; border-radius: 25px;
+            overflow: hidden; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transform: translateY(30px); transition: transform 0.4s ease;
+            display: flex; flex-direction: column; max-height: 85vh;
+        }
+        .event-modal.active .modal-content { transform: translateY(0); }
+        .modal-close {
+            position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
+            background: white; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; cursor: pointer; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: var(--azul-escuro); font-size: 1.2rem; transition: 0.3s;
+        }
+        .modal-close:hover { background: var(--verde-clube); color: white; transform: rotate(90deg); }
+        
+        .modal-body { 
+            display: flex; 
+            flex-direction: row; 
+            height: 100%; 
+            overflow: hidden; 
+        }
+        .modal-img-side { 
+            flex: 1; 
+            background: #f1f5f9; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+        }
+        .modal-img-side img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* ALTERADO AQUI DE contain PARA cover PARA HARMONIZAR */
+            display: block;
+            /* REMOVIDO O PADDING PARA PREENCHER O CARD INTEIRO */
+        }
+        .modal-text-side { 
+            flex: 1.1; 
+            padding: 45px; 
+            display: flex; 
+            flex-direction: column; 
+            overflow-y: auto; 
+            max-height: 85vh;
+            background: white;
+        }
+        .modal-text-side h2 { 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            line-height: 1.2; 
+            font-weight: 800; 
+            color: var(--azul-escuro); 
+        }
+        .modal-text-side p { 
+            font-size: 1.05rem; 
+            color: #475569; 
+            margin-bottom: 25px; 
+            white-space: pre-line; 
+            line-height: 1.6; 
+        }
+        .modal-link-container { margin-top: auto; padding-top: 15px; }
+
+        @media (max-width: 768px) {
+            .modal-body { flex-direction: column; overflow-y: auto; }
+            .modal-img-side { flex: none; height: 280px; }
+            .modal-text-side { padding: 30px 25px; overflow-y: visible; max-height: none; }
+            .modal-text-side h2 { font-size: 1.5rem; }
+            .modal-content { max-height: 90vh; overflow-y: auto; }
+        }
 
         /* ====================================================================
            INDICADOR DE DESLIZE (SÓ PARA CELULAR)
@@ -152,7 +235,7 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             grid-auto-rows: 250px;
             gap: 20px;
-            grid-auto-flow: dense; /* A MÁGICA DO TETRIS AQUI! */
+            grid-auto-flow: dense;
         }
         .gallery-item {
             position: relative; border-radius: 15px; overflow: hidden; cursor: pointer;
@@ -169,35 +252,26 @@
         .gallery-item:hover .gallery-overlay { opacity: 1; }
         .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
         
-        /* -------- CORREÇÃO PARA NÃO CORTAR CABEÇA -------- */
-        /* Aplique esta classe na tag <img> que estiver com problema */
         .gallery-item img.ajuste-cabeca {
-            object-position: center top !important; /* Força o alinhamento no topo, mantendo o preenchimento */
+            object-position: center top !important;
         }
-        /* ------------------------------------------------- */
         
-        /* Destacando algumas fotos para dar dinamismo no grid */
         .gallery-item.large { grid-column: span 2; grid-row: span 2; }
         .gallery-item.tall { grid-row: span 2; }
         .gallery-item.wide { grid-column: span 2; }
 
         /* DEPOIMENTOS */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .depoimento-card { background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); text-align: center; border: 1px solid #E2E8F0; transition: all 0.3s ease; }
-        .depoimento-card:hover { border-color: var(--verde-clube); transform: translateY(-5px); }
-        .depoimento-card p { font-size: 1.1rem; color: #475569; margin-bottom: 25px; font-style: italic; }
-        .depoimento-autor { font-weight: 700; font-size: 1rem; color: var(--azul-escuro); }
+        .depoimento-card { background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: 0.3s; border: 1px solid #F1F5F9; }
+        .depoimento-card:hover { transform: translateY(-5px); border-color: var(--verde-clube); }
+        .depoimento-card p { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; position: relative; }
+        .depoimento-card p::before { content: '"'; font-size: 4rem; color: rgba(39, 174, 96, 0.1); position: absolute; top: -30px; left: -10px; font-family: serif; }
+        .depoimento-autor { font-weight: 700; color: var(--azul-escuro); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ====================================================================
-           ASSOCIE-SE CTA
-           ==================================================================== */
-        .cta-section { 
-            background-image: linear-gradient(rgba(26, 37, 47, 0.75), rgba(26, 37, 47, 0.85)), url('images/bginicial.jpeg'); 
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            text-align: center; 
-            padding: 100px 0; 
+        /* CTA FINAL */
+        .cta-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/bginicial.jpeg') center/cover;
+            padding: 80px 40px; text-align: center; color: white;
             border-radius: 30px; 
             margin: 0 20px; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
@@ -310,7 +384,8 @@
     <section id="manifesto">
         <div class="container text-center">
             <span class="section-subtitle">Nossa Essência</span>
-            <h2 class="section-title">Não somos apenas um clube.<br>Somos um espaço onde a vida acontece.</h2>
+            <h2 class="section-title">Não somos apenas um clube.  
+Somos um espaço onde a vida acontece.</h2>
             <div class="manifesto-texto">
                 <p>Acreditamos que bem-estar é prática diária. Que o movimento transforma. Que a natureza equilibra. Que a convivência fortalece.</p>
                 <p>Aqui, o esporte faz parte da rotina. Os encontros são genuínos. E as gerações crescem juntas.</p>
@@ -361,8 +436,9 @@
                 <h2>Para todas as fases da vida.</h2>
                 <p>Do infantil ao adulto, o esporte aqui não é evento. É cultura.</p>
                 <p>Aulas coletivas, modalidades competitivas, treinos orientados e atividades de bem-estar fazem parte da rotina do associado — <strong>sem taxas adicionais por modalidade.</strong></p>
-                <br>
-                <p style="font-weight: 600; color: var(--verde-clube);">Aqui, praticar é simples. Continuar é natural.</p>
+                  
+
+                <p style="font-weight: 600; color: var(--verde-clube );">Aqui, praticar é simples. Continuar é natural.</p>
             </div>
         </div>
     </section>
@@ -394,13 +470,16 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="images/amigosdopepe01.jpeg" alt="Beach Tennis">
-                                <div class="event-badge"><span></span> ABR</div>
+                                <img src="images/cinema01.jpeg" alt="Sessão de Cinema">
+                                <div class="event-badge"><span>23</span> ABR</div>
                             </div>
                             <div class="event-info">
-                                <h3>Torneio de Duplas AMIGOS DO PEPE</h3>
-                                <p>Participe do nosso torneio. 11/04 e 12/04</p>
-                                <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Inscreva-se<i class="fas fa-arrow-right"></i></a>
+                                <div class="event-header">
+                                    <h3>Sessão de Cinema no Clube</h3>
+                                    <span class="event-plus">+</span>
+                                </div>
+                                <p style="display:none;">No próximo 23 de abril, às 18h, convidamos você para a inauguração do nosso projeto de cinema no salão social, com a exibição do documentário "Conversas nas Zonas Azuis". Após o filme, teremos uma roda de conversa sobre longevidade e envelhecimento saudável com a geriatra Dra. Vivian e a médica nutróloga Dra. Caroline Fontes. Esperamos você!</p>
+                                <a href="https://form.jotform.com/261035940551048" class="event-link" target="_blank">Inscreva-se<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -412,8 +491,11 @@
                                 <div class="event-badge"><span>09</span> MAI</div>
                             </div>
                             <div class="event-info">
-                                <h3>Torneio de Beach Tennis Masculino</h3>
-                                <p> Vem ai mais um torneio no Clube Aldeia da Serra</p>
+                                <div class="event-header">
+                                    <h3>Torneio de Beach Tennis Masculino</h3>
+                                    <span class="event-plus">+</span>
+                                </div>
+                                <p style="display:none;">Vem ai mais um torneio no Clube Aldeia da Serra</p>
                                 <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Inscrições<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -426,8 +508,11 @@
                                 <div class="event-badge"><span></span> MAI</div>
                             </div>
                             <div class="event-info">
-                                <h3>Torneio de Futebol</h3>
-                                <p> Torneio de Futebol Copa do Mundo no Clube Aldeia da Serra</p>
+                                <div class="event-header">
+                                    <h3>Torneio de Futebol</h3>
+                                    <span class="event-plus">+</span>
+                                </div>
+                                <p style="display:none;">Torneio de Futebol Copa do Mundo no Clube Aldeia da Serra</p>
                                 <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Inscrições<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -440,8 +525,11 @@
                                 <div class="event-badge"><span>27</span> MAR</div>
                             </div>
                             <div class="event-info">
-                                <h3>Jantar 35 Clube Aldeia da Serra</h3>
-                                <p>Fotos disponivéis.</p>
+                                <div class="event-header">
+                                    <h3>Jantar 35 Clube Aldeia da Serra</h3>
+                                    <span class="event-plus">+</span>
+                                </div>
+                                <p style="display:none;">Fotos disponivéis.</p>
                                 <a href="https://drive.google.com/drive/folders/1QdmYNzGJOR2kNKadBbb9XXwcSUCzVufr" class="event-link" target="_blank">Baixar Fotos<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -454,8 +542,11 @@
                                 <div class="event-badge"><span></span> EM BREVE</div>
                             </div>
                             <div class="event-info">
-                                <h3>Festival de Natação Infantil</h3>
-                                <p>Mais informações em breve.</p>
+                                <div class="event-header">
+                                    <h3>Festival de Natação Infantil</h3>
+                                    <span class="event-plus">+</span>
+                                </div>
+                                <p style="display:none;">Mais informações em breve.</p>
                                 <a href="https://wa.me/5511999886127" class="event-link" target="_blank">Saiba Mais<i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -498,7 +589,7 @@
                     <div class="gallery-overlay"><span>Campeonato Interno de Futebol</span></div>
                 </div>
                 
-                <div class="gallery-item tall">
+                <div class="gallery-item">
                     <img src="images/semananacionalseguranca.jpeg" alt="Galeria">
                     <div class="gallery-overlay"><span>Semana de Segurança Aquática</span></div>
                 </div>
@@ -531,7 +622,8 @@
     <section id="associe-se">
         <div class="container">
             <div class="cta-section">
-                <h2>Mais do que um título.<br>Um pertencimento.</h2>
+                <h2>Mais do que um título.  
+Um pertencimento.</h2>
                 <p>Fazer parte do Clube Aldeia da Serra é escolher uma rotina mais ativa, mais conectada à natureza e mais próxima de quem importa. Uma comunidade consolidada, com 35 anos de história.</p>
                 <a href="https://wa.me/5511999886127" class="btn-cta">Solicitar Informações</a>
             </div>
@@ -541,7 +633,7 @@
     <footer id="contato">
         <div class="container footer-grid">
             <div class="footer-col">
-                <img src="images/Design_sem_nome__1_-removebg-preview.png" alt="Logo Clube Aldeia da Serra" style="max-height: 130px; margin-top: -30px; margin-bottom: -15px; filter: brightness(0) invert(1); object-fit: contain; transform-origin: left center;">
+                <img src="images/Design_sem_nome__1_-removebg-preview.png" alt="Logo Clube Aldeia da Serra" style="max-height: 130px; margin-top: -30px; margin-bottom: -15px; filter: brightness(0 ) invert(1); object-fit: contain; transform-origin: left center;">
                 <p style="margin-top: 5px; color: #94A3B8;">35 anos cultivando uma vida ativa e em harmonia com a natureza.</p>
                 <div class="social-links">
                     <a href="https://www.instagram.com/clubealdeiadaserraoficial/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -551,7 +643,7 @@
             <div class="footer-col">
                 <h4>Contato</h4>
                 <p><i class="fas fa-map-marker-alt"></i> Estr. Dr. Yojiro Takaoka, 2900  Aldeia da Serra, Barueri - SP</p>
-                <p><i class="fas fa-phone"></i> (11) 4192-2953</p>
+                <p><i class="fas fa-phone"></i> (11 ) 4192-2953</p>
                 <p><i class="fab fa-whatsapp"></i> (11) 99988-6127</p>
                 <p><i class="fas fa-envelope"></i> contato@clubealdeiadaserra.com.br</p>
             </div>
@@ -567,9 +659,27 @@
         </div>
     </footer>
 
+    <div class="event-modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img-side">
+                    <img src="" alt="Evento" id="modalImg">
+                </div>
+                <div class="modal-text-side">
+                    <h2 id="modalTitle">Título do Evento</h2>
+                    <p id="modalDesc">Descrição do evento aqui.</p>
+                    <div class="modal-link-container" id="modalLinkContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        // Carrossel 1: Diferenciais (Estrutura)
+        // Carrossel 1: Diferenciais (Estrutura )
         var swiperDiferenciais = new Swiper(".swiper-diferenciais", {
             spaceBetween: 30,
             centeredSlides: true,
@@ -580,7 +690,7 @@
 
         // Carrossel 2: Próximos Eventos
         var swiperEventos = new Swiper(".swiper-eventos", {
-            slidesPerView: 1, // Celular vê 1 por vez
+            slidesPerView: 1,
             spaceBetween: 25,
             grabCursor: true,
             pagination: {
@@ -588,8 +698,8 @@
                 clickable: true,
             },
             breakpoints: {
-                768: { slidesPerView: 2 }, // Tablet vê 2
-                1024: { slidesPerView: 3 } // PC vê 3
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
             }
         });
 
@@ -605,6 +715,45 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
+        });
+
+        // LÓGICA DO MODAL DE EVENTOS
+        const modal = document.getElementById('eventModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalLinkContainer = document.getElementById('modalLinkContainer');
+
+        document.querySelectorAll('.event-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.event-link')) return;
+
+                const img = card.querySelector('img').src;
+                const title = card.querySelector('h3').innerText;
+                const desc = card.querySelector('p').innerText;
+                const link = card.querySelector('.event-link').cloneNode(true);
+
+                modalImg.src = img;
+                modalTitle.innerText = title;
+                modalDesc.innerText = desc;
+                
+                modalLinkContainer.innerHTML = '';
+                modalLinkContainer.appendChild(link);
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeEventModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeModal.addEventListener('click', closeEventModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeEventModal();
         });
     </script>
 </body>
